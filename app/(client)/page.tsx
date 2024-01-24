@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import Header from "../components/Header";
 
 async function getPosts() {
   const query = `
@@ -19,7 +20,7 @@ export default async function Home() {
   console.log(posts, 'posts')
   return (
     <div>
-      <h1>Hello World!</h1>
+      <Header title="Articles" />
     </div>
   );
 }
