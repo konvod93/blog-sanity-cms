@@ -13,7 +13,7 @@ async function getPosts() {
     excerpt
   }
   `;
-  const data = await client.fetch(query);
+  const data = await client.fetch(query, {cache: "no-cache"});
   return data;
 }
 
