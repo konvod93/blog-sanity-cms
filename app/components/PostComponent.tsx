@@ -19,6 +19,13 @@ const PostComponent = ({post}: Props) => {
             <p className={`${dateFont.className} my-2 text-purple-800`}>{new Date(post?.publishedAt).toDateString()}</p>
             <p className="dark:text-gray-400 nb-4 line-clamp-2">{post?.excerpt}</p>
         </Link>
+
+        {/* Tags */}
+        <div>
+          {post?.tags?.map((tag) => (
+            <span key={tag?._id} className="mr-2 p-1 rounded-sm text-sm lowercase dark:bg-gray-950 border dark:border-gray-900">#{tag?.name}</span>
+          ))}
+        </div>
     </div>
   )
 }
