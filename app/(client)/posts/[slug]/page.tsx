@@ -1,8 +1,10 @@
 import Header from "@/app/components/Header";
 import { Post } from "@/app/utils/interface";
 import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import { VT323 } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 
 const dateFont = VT323({weight: "400", subsets: ['latin']});
@@ -55,7 +57,7 @@ const page = async ({params}: Params) => {
           ))}
         </div>
         <div className={richTextStyles}>
-          <PortableText value={post.body} />
+          <PortableText value={post.body} components={myPortableTextComponents}/>
         </div>
       </div>
     </div>
@@ -63,6 +65,19 @@ const page = async ({params}: Params) => {
 };
 
 export default page
+
+const myPortableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <Image
+        src={urlForImage(value)}
+        alt="Post"
+        width={700}
+        height={700}
+      />
+    ),
+  },
+};
 
 const richTextStyles = `
   mt-14
@@ -77,3 +92,4 @@ const richTextStyles = `
   prose-li:leading-7
   prose-li:ml-4
 `
+
