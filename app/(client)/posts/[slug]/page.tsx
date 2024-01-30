@@ -66,6 +66,8 @@ const page = async ({params}: Params) => {
 
 export default page
 
+export const revalidate = 60;
+
 const myPortableTextComponents = {
   types: {
     image: ({ value }: any) => (
