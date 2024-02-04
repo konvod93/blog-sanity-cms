@@ -42,7 +42,7 @@ const page = async ({params}: Params) => {
     console.log(post, 'post')
   return (
     <div>
-      <Header title={post?.title} />
+      <Header title={post?.title} tags />
       <div className="text-center">
         <span className={`${dateFont.className} text-purple-500`}>
           {new Date(post?.publishedAt).toDateString()}
