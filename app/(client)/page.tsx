@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import Header from "../components/Header";
 import { Post } from "../utils/interface";
@@ -25,8 +24,7 @@ async function getPosts() {
 export const revalidate = 60;
 
 export default async function Home() {
-  const posts: Post[] = await getPosts();
-  // console.log(posts, 'posts')
+  const posts: Post[] = await getPosts();  
   return (
     <div>
       <Header title="Articles" tags />
