@@ -6,6 +6,7 @@ import { PortableText } from "@portabletext/react";
 import { VT323 } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const dateFont = VT323({weight: "400", subsets: ['latin']});
 
@@ -36,10 +37,18 @@ async function getPost(slug: string) {
   return post;
 }
 
+export const revalidate = 60
+
 const page = async ({params}: Params) => {
     console.log(params, 'params')
     const post: Post = await getPost(params?.slug);
     console.log(post, 'post')
+
+    if (!post) {
+      notFound();
+    }
+
+
   return (
     <div>
       <Header title={post?.title} tags />
@@ -65,8 +74,6 @@ const page = async ({params}: Params) => {
 };
 
 export default page
-
-export const revalidate = 60;
 
 const myPortableTextComponents = {
   types: {
